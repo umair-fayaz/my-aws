@@ -3,11 +3,16 @@ name: Start AWS cloud server
 on:
   push:
     branches: [ main ]
-    
+  workflow_dispatch:
 jobs:
   start-server:
     name: Start OpenVPN Server
     runs-on: ubuntu-latest
+    env:
+      INSTANCE_ID: ${{ secrets.INSTANCE_ID }}
+      USER_NAME: ${{ secrets.USER_NAME }}
+      PASSSWORD: ${{ secrets.PASSSWORD }}
+      HOSTNAME: ${{ secrets.HOSTNAME }}
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -18,6 +23,11 @@ jobs:
        
       - name: Start EC2 instance
         run: |
-          aws ec2 start-instances --instance-ids ${{ secrets.INSTANCE_ID }}
+          aws ec2 start-instances --instance-ids $INSTANCE_ID
+          sleep 10
           
       - name: Get and set ip address
+        run: |
+          PUBLIC_IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
+          curl -IL http://$USER_NAME:$PASSSWORD@freedns.afraid.org/nic/update?hostname=$HOSTNAME&myip=$PUBLIC_IP
+          
