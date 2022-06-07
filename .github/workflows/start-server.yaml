@@ -29,5 +29,6 @@ jobs:
       - name: Get and set ip address
         run: |
           PUBLIC_IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
+          echo $PUBLIC_IP
           curl -IL http://$USER_NAME:$PASSSWORD@freedns.afraid.org/nic/update?hostname=$HOSTNAME&myip=$PUBLIC_IP
           
