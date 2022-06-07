@@ -1,0 +1,23 @@
+name: Start AWS cloud server
+
+on:
+  push:
+    branches: [ main ]
+    
+jobs:
+  start-server:
+    name: Start OpenVPN Server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.BAHMNI_AWS_ID }}
+          aws-secret-access-key: ${{ secrets.BAHMNI_AWS_SECRET }}
+          aws-region: ap-south-1
+       
+      - name: Start EC2 instance
+        run: |
+          aws ec2 start-instances --instance-ids ${{ secrets.INSTANCE_ID }}
+          
+      - name: Get and set ip address
