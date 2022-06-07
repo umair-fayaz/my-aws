@@ -30,5 +30,5 @@ jobs:
         run: |
           PUBLIC_IP_ADDRESS_TO_PASS=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
           echo $PUBLIC_IP_ADDRESS_TO_PASS
-          wget http://$USER_NAME:$PASSSWORD@freedns.afraid.org/nic/update?hostname=$HOSTNAME&myip=$PUBLIC_IP_ADDRESS_TO_PASS
+          curl http://$USER_NAME:$PASSSWORD@freedns.afraid.org/nic/update?hostname=$HOSTNAME&myip=$PUBLIC_IP_ADDRESS_TO_PASS
           
