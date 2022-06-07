@@ -1,8 +1,6 @@
 name: Start AWS cloud server
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 jobs:
   start-server:
