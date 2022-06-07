@@ -29,7 +29,7 @@ jobs:
       - name: Get and set ip address
         run: |
           #PUBLIC_IP_ADDRESS_TO_PASS=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
-          PUBLIC_IP_ADDRESS_TO_PASS="1.2.3.4"
+          PUBLIC_IP_ADDRESS_TO_PASS=1.2.3.4
           ifconfig
-          curl "http://$USER_NAME:$PASSSWORD@freedns.afraid.org/nic/update?hostname=$HOSTNAME&myip=2.3.4.3"
+          curl "http://$USER_NAME:$PASSSWORD@freedns.afraid.org/nic/update?hostname=$HOSTNAME&myip=$PUBLIC_IP_ADDRESS_TO_PASS"
           
