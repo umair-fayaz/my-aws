@@ -21,14 +21,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET }}
           aws-region: ap-south-1
        
-      - name: Start EC2 instance
-        run: |
-          aws ec2 start-instances --instance-ids $INSTANCE_ID
-          sleep 10
+#       - name: Start EC2 instance
+#         run: |
+#           aws ec2 start-instances --instance-ids $INSTANCE_ID
+#           sleep 10
           
       - name: Get and set ip address
         run: |
-          PUBLIC_IP_ADDRESS_TO_PASS=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
-          echo $PUBLIC_IP_ADDRESS_TO_PASS
+          #PUBLIC_IP_ADDRESS_TO_PASS=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
+          PUBLIC_IP_ADDRESS_TO_PASS=1.2.3.4
+          ifconfig
           curl http://$USER_NAME:$PASSSWORD@freedns.afraid.org/nic/update?hostname=$HOSTNAME&myip=$PUBLIC_IP_ADDRESS_TO_PASS
           
