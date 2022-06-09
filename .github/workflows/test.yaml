@@ -12,5 +12,6 @@ jobs:
       - name: Start EC2 instance
         run: |
           this=$(cat file)
+          echo $this
           
      
