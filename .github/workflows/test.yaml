@@ -1,0 +1,16 @@
+name: Start AWS cloud server
+
+on:
+  workflow_dispatch:
+jobs:
+  start-server:
+    name: Start OpenVPN Server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS Credentials
+        run: echo "hello" > file 
+      - name: Start EC2 instance
+        run: |
+          this=$(cat file)
+          
+     
