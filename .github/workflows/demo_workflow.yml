@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: demo
-        run: echo "hello"
+        run: echo ${{ secrets.INSTANCE_ID }}
