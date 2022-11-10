@@ -2,6 +2,9 @@ name: Start AWS cloud server
 
 on:
   workflow_call:
+    secrets:
+      INSTANCE_ID:
+        required: true
   workflow_dispatch:
 jobs:
   demo:
