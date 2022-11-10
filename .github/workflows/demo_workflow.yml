@@ -1,0 +1,11 @@
+name: Start AWS cloud server
+
+on:
+  workflow_dispatch:
+jobs:
+  demo:
+    name: demo
+    runs-on: ubuntu-latest
+    steps:
+      - name: demo
+        run: echo "hello"
