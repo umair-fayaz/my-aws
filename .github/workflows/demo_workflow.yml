@@ -6,6 +6,8 @@ jobs:
   demo:
     name: demo
     runs-on: ubuntu-latest
+    env:
+     INSTANCE_ID: ${{ secrets.INSTANCE_ID }}
     steps:
       - name: demo
-        run: echo ${{ secrets.INSTANCE_ID }}
+        run: echo $INSTANCE_ID
