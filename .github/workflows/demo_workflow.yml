@@ -2,6 +2,7 @@ name: Start AWS cloud server
 
 on:
   workflow_call:
+  workflow_dispatch:
 jobs:
   demo:
     name: demo
